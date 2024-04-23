@@ -23,9 +23,9 @@ app.get("/", async (req, res) => {
 app.post("/request-quote", async (req, res) => {
 
   try {
-    let { Fname, Lname, Email, Phone, Company, Site, NumberOfYears, NeedVISA, HowManyVISA, Cost, InterestedinPurchasing } = req.body;
+    let { Fname, Lname, Email, Phone, PlanningToStart, FamiliarToOpen, Company, Site, BusinessActivitiesContent, NumberOfYears, NeedVISA, HowManyVISA, Cost, InterestedinPurchasing, InterestedinDubaiMArket, AnythingElse } = req.body;
 
-    await SendEmail(Fname, Lname, Email, Phone, Company, Site, NumberOfYears, NeedVISA, HowManyVISA, Cost, InterestedinPurchasing);
+    await SendEmail(Fname, Lname, Email, Phone, PlanningToStart, FamiliarToOpen, Company, Site, BusinessActivitiesContent, NumberOfYears, NeedVISA, HowManyVISA, Cost, InterestedinPurchasing, InterestedinDubaiMArket, AnythingElse);
 
     res.send("Sent")
   } catch (error) {
@@ -36,7 +36,7 @@ app.post("/request-quote", async (req, res) => {
 
 })
 
-async function SendEmail(Fname, Lname, Email, Phone, Company, Site, NumberOfYears, NeedVISA, HowManyVISA, Cost, InterestedinPurchasing) {
+async function SendEmail(Fname, Lname, Email, Phone, PlanningToStart, FamiliarToOpen, Company, Site, BusinessActivitiesContent, NumberOfYears, NeedVISA, HowManyVISA, Cost, InterestedinPurchasing, InterestedinDubaiMArket, AnythingElse) {
   const sender = {
     email: 'info@tailllc.com',
     name: `${Fname} - New Quote Request`,
@@ -173,6 +173,32 @@ async function SendEmail(Fname, Lname, Email, Phone, Company, Site, NumberOfYear
           </div>
         </div>
 
+        <div class="row">
+          <div class="vertical-column">
+            <div class="vertical-column-content" style="background-color: #FFE6E6;">
+              <h3>Planning to Start your Business</h3>
+            </div>
+          </div>
+          <div class="vertical-column">
+            <div class="vertical-column-content" style="background-color: #E1AFD1;">
+              <h3>${PlanningToStart}</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="vertical-column">
+            <div class="vertical-column-content" style="background-color: #FFE6E6;">
+              <h3>Opening a business in UAE</h3>
+            </div>
+          </div>
+          <div class="vertical-column">
+            <div class="vertical-column-content" style="background-color: #E1AFD1;">
+              <h3>${FamiliarToOpen}</h3>
+            </div>
+          </div>
+        </div>
+
 
         <div class="row">
           <div class="vertical-column">
@@ -196,6 +222,19 @@ async function SendEmail(Fname, Lname, Email, Phone, Company, Site, NumberOfYear
           <div class="vertical-column">
             <div class="vertical-column-content" style="background-color: #E1AFD1;">
               <h3>${Site}</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="vertical-column">
+            <div class="vertical-column-content" style="background-color: #FFE6E6;">
+              <h3>Business Activities</h3>
+            </div>
+          </div>
+          <div class="vertical-column">
+            <div class="vertical-column-content" style="background-color: #E1AFD1;">
+              <h3>${BusinessActivitiesContent}</h3>
             </div>
           </div>
         </div>
@@ -251,6 +290,32 @@ async function SendEmail(Fname, Lname, Email, Phone, Company, Site, NumberOfYear
           <div class="vertical-column">
             <div class="vertical-column-content" style="background-color: #E1AFD1;">
               <h3>${InterestedinPurchasing}</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="vertical-column">
+            <div class="vertical-column-content" style="background-color: #FFE6E6;">
+              <h3>Interested in Dubai Market</h3>
+            </div>
+          </div>
+          <div class="vertical-column">
+            <div class="vertical-column-content" style="background-color: #E1AFD1;">
+              <h3>${InterestedinDubaiMArket}</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="vertical-column">
+            <div class="vertical-column-content" style="background-color: #FFE6E6;">
+              <h3>Anything Else</h3>
+            </div>
+          </div>
+          <div class="vertical-column">
+            <div class="vertical-column-content" style="background-color: #E1AFD1;">
+              <h3>${AnythingElse}</h3>
             </div>
           </div>
         </div>
