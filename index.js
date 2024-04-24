@@ -23,9 +23,9 @@ app.get("/", async (req, res) => {
 app.post("/request-quote", async (req, res) => {
 
   try {
-    let { Fname, Lname, Email, Phone, PlanningToStart, FamiliarToOpen, Company, Site, BusinessActivitiesContent, NumberOfYears, NeedVISA, HowManyVISA, Cost, InterestedinPurchasing, InterestedinDubaiMArket, AnythingElse } = req.body;
+    let { FullName, Email, Phone, PlanningToStart, FamiliarToOpen, Company, Site, BusinessActivitiesContent, NumberOfYears, NeedVISA, HowManyVISA, Cost, InterestedinPurchasing, InterestedinDubaiMArket, AnythingElse } = req.body;
 
-    await SendEmail(Fname, Lname, Email, Phone, PlanningToStart, FamiliarToOpen, Company, Site, BusinessActivitiesContent, NumberOfYears, NeedVISA, HowManyVISA, Cost, InterestedinPurchasing, InterestedinDubaiMArket, AnythingElse);
+    await SendEmail(FullName, Email, Phone, PlanningToStart, FamiliarToOpen, Company, Site, BusinessActivitiesContent, NumberOfYears, NeedVISA, HowManyVISA, Cost, InterestedinPurchasing, InterestedinDubaiMArket, AnythingElse);
 
     res.send("Sent")
   } catch (error) {
@@ -36,10 +36,10 @@ app.post("/request-quote", async (req, res) => {
 
 })
 
-async function SendEmail(Fname, Lname, Email, Phone, PlanningToStart, FamiliarToOpen, Company, Site, BusinessActivitiesContent, NumberOfYears, NeedVISA, HowManyVISA, Cost, InterestedinPurchasing, InterestedinDubaiMArket, AnythingElse) {
+async function SendEmail(FullName, Email, Phone, PlanningToStart, FamiliarToOpen, Company, Site, BusinessActivitiesContent, NumberOfYears, NeedVISA, HowManyVISA, Cost, InterestedinPurchasing, InterestedinDubaiMArket, AnythingElse) {
   const sender = {
     email: 'info@tailllc.com',
-    name: `${Fname} - New Quote Request`,
+    name: `${FullName} - New Quote Request`,
   }
 
   let content = `<!DOCTYPE html>
@@ -122,28 +122,15 @@ async function SendEmail(Fname, Lname, Email, Phone, PlanningToStart, FamiliarTo
         <div class="row">
           <div class="vertical-column">
             <div class="vertical-column-content" style="background-color: #FFE6E6;">
-              <h3>First Name</h3>
+              <h3>Name</h3>
             </div>
           </div>
           <div class="vertical-column">
             <div class="vertical-column-content" style="background-color: #E1AFD1;">
-              <h3>${Fname}</h3>
+              <h3>${FullName}</h3>
             </div>
           </div>
           
-        </div>
-
-        <div class="row">
-          <div class="vertical-column">
-            <div class="vertical-column-content" style="background-color: #FFE6E6;">
-              <h3>Last Name</h3>
-            </div>
-          </div>
-          <div class="vertical-column">
-            <div class="vertical-column-content" style="background-color: #E1AFD1;">
-              <h3>${Lname}</h3>
-            </div>
-          </div>
         </div>
 
         <div class="row">
@@ -340,8 +327,8 @@ async function SendEmail(Fname, Lname, Email, Phone, PlanningToStart, FamiliarTo
     
     `
 
-  await SendEmailModel(sender, 'rahul.rastogi.216000@gmail.com', `${Fname} - New Quote Request`, content)
-  await SendEmailModel(sender, 'consulting@tailllc.com', `${Fname} - New Quote Request`, content)
+  await SendEmailModel(sender, 'rahul.rastogi.216000@gmail.com', `${FullName} - New Quote Request`, content)
+  await SendEmailModel(sender, 'consulting@tailllc.com', `${FullName} - New Quote Request`, content)
 
 }
 
